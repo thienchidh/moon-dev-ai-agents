@@ -7,6 +7,7 @@ A tool to search and download papers from arXiv.org
 """
 
 import os
+import sys
 import re
 import time
 import json
@@ -16,6 +17,10 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import random
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from path_utils import get_arxiv_data_dir
 
 # ============= CONFIGURATION SETTINGS (EDIT THESE) =============
 # Search topic - change this to whatever you want to search for
@@ -28,7 +33,7 @@ SEARCH_CATEGORY = "q-fin"  # Options: "q-fin", "cs", "econ", etc.
 MAX_PAPERS_TO_DOWNLOAD = 50  # Change this to download more or fewer papers
 
 # Where to save the papers
-DOWNLOAD_DIRECTORY = os.path.join("/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data", "Arxiv")
+DOWNLOAD_DIRECTORY = str(get_arxiv_data_dir())
 
 # Sort order for results
 SORT_BY = "relevance"  # Options: "relevance", "lastUpdatedDate", "submittedDate"

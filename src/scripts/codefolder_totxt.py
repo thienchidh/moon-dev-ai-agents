@@ -1,10 +1,16 @@
 import os
+import sys
 from datetime import datetime
 import glob
+from pathlib import Path
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from path_utils import get_data_dir, get_project_root
 
 # Constants
-INPUT_FOLDER = "/Users/md/Dropbox/dev/github/moon-dev-trading-bots/bots"
-OUTPUT_FOLDER = "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/codetotext"
+INPUT_FOLDER = str(get_project_root() / "bots")  # Note: This folder may need to be adjusted based on your project structure
+OUTPUT_FOLDER = str(get_data_dir("codetotext"))
 
 # File extensions to include
 CODE_EXTENSIONS = ['.py', '.ipynb', '.js', '.html', '.css', '.md', '.txt']

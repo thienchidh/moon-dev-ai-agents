@@ -26,7 +26,7 @@ from src.agents.backtest_runner import run_backtest_in_conda, save_results
 # ==== CONFIG ====
 # Target research folder (can be overridden via CLI argument)
 DEFAULT_RESEARCH_DIR = Path(
-    "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi/03_14_2025/research"
+    str(Path(__file__).parent.parent / "data" / "rbi" / "03_14_2025" / "research")
 )
 
 # Output subfolder name under the research directory

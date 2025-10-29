@@ -69,7 +69,7 @@ AI_MAX_TOKENS = 16000  # 🌙 Moon Dev: Increased for complete backtest code gen
 
 # Import model factory with proper path handling
 import sys
-sys.path.append('/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading')
+sys.path.append(str(Path(__file__).parent.parent))
 
 try:
     from src.models import model_factory
@@ -100,7 +100,7 @@ RATE_LIMIT_GLOBAL_DELAY = 0.5  # Global delay between any API calls
 #   - Perfect for auto-generated strategies from web search agent!
 #
 STRATEGIES_FROM_FILES = True  # Set to True to read from folder instead of ideas.txt
-STRATEGIES_FOLDER = "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/web_search_research/final_strategies"
+STRATEGIES_FOLDER = str(Path(__file__).parent.parent / "data" / "web_search_research" / "final_strategies")
 
 # Thread color mapping
 THREAD_COLORS = {
@@ -384,7 +384,7 @@ RISK MANAGEMENT:
 
 If you need indicators use TA lib or pandas TA.
 
-Use this data path: /Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi/BTC-USD-15m.csv
+Use this data path: src/data/rbi/BTC-USD-15m.csv (use Path(__file__).parent.parent / 'data' / 'rbi' / 'BTC-USD-15m.csv' for full path)
 the above data head looks like below
 datetime, open, high, low, close, volume,
 2023-01-01 00:00:00, 16531.83, 16532.69, 16509.11, 16510.82, 231.05338022,
@@ -410,7 +410,7 @@ if __name__ == "__main__":
 
     # FIRST: Run standard backtest and print stats (REQUIRED for parsing!)
     print("\\n🌙 Running initial backtest for stats extraction...")
-    data = pd.read_csv('/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi/BTC-USD-15m.csv')
+    data = pd.read_csv('src/data/rbi/BTC-USD-15m.csv (use Path(__file__).parent.parent / 'data' / 'rbi' / 'BTC-USD-15m.csv' for full path)')
     data['datetime'] = pd.to_datetime(data['datetime'])
     data = data.set_index('datetime')
     data.columns = ['Open', 'High', 'Low', 'Close', 'Volume']

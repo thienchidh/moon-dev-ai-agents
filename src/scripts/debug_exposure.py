@@ -5,10 +5,15 @@ Tests backtest output to debug why Exposure % is showing as N/A
 
 import subprocess
 import re
+import sys
 from pathlib import Path
 
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from path_utils import get_rbi_pp_multi_data_dir
+
 # Test file from your CSV
-TEST_FILE = "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi_pp_multi/10_27_2025/backtests_package/T13_BandedOscillator_PKG.py"
+TEST_FILE = str(get_rbi_pp_multi_data_dir() / "10_27_2025" / "backtests_package" / "T13_BandedOscillator_PKG.py")
 
 print("="*80)
 print("🌙 Moon Dev's Exposure % Debugger")

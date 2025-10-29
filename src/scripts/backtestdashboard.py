@@ -49,9 +49,21 @@ from apscheduler.triggers.interval import IntervalTrigger
 import traceback
 import logging
 
-# Add path to import MoonDevAPI
-sys.path.append('/Users/md/Dropbox/dev/github/moon-dev-trading-bots')
-from api import MoonDevAPI
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from path_utils import get_rbi_pp_multi_data_dir, get_private_data_dir
+
+# Add path to import MoonDevAPI (adjust if needed based on your project structure)
+try:
+    from agents.api import MoonDevAPI
+except ImportError:
+    # Fallback for different import structures
+    try:
+        sys.path.append(str(Path(__file__).parent.parent))
+        from agents.api import MoonDevAPI
+    except ImportError:
+        print("⚠️ Warning: Could not import MoonDevAPI. Some features may not work.")
+        MoonDevAPI = None
 
 # ============================================================================
 # 🔧 CONFIGURATION - CHANGE THESE PATHS TO MATCH YOUR SETUP!
@@ -60,11 +72,11 @@ from api import MoonDevAPI
 # 📊 Path to your backtest stats CSV file
 # This CSV is created by rbi_agent_pp_multi.py after running backtests
 # Default: src/data/rbi_pp_multi/backtest_stats.csv
-STATS_CSV = Path("/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi_pp_multi/backtest_stats.csv")
+STATS_CSV = get_rbi_pp_multi_data_dir() / "backtest_stats.csv"
 
 # 📁 Directory for static files (CSS, JS) and templates (HTML)
 # These files are located in: src/data/rbi_pp_multi/static and src/data/rbi_pp_multi/templates
-TEMPLATE_BASE_DIR = Path("/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi_pp_multi")
+TEMPLATE_BASE_DIR = get_rbi_pp_multi_data_dir()
 
 # 🗂️ Directory to store user-created folders
 # Folders allow you to organize and group your backtest results
@@ -79,7 +91,7 @@ DATA_DIR = TEMPLATE_BASE_DIR / "downloads"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # 📊 Test Data Sets Directory - Historical datasets for backtesting
-TEST_DATA_DIR = Path("/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/private_data")
+TEST_DATA_DIR = get_private_data_dir()
 
 # TEST MODE for data portal - Set to True for fast testing with sample data
 TEST_MODE = True
