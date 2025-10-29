@@ -69,7 +69,7 @@ AI_MAX_TOKENS = 16000  # 🌙 Moon Dev: Increased for complete backtest code gen
 
 # Import model factory with proper path handling
 import sys
-sys.path.append('/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading')
+sys.path.append(str(Path(__file__).parent.parent))
 
 try:
     from src.models import model_factory
