@@ -10,9 +10,14 @@ import time
 import psutil
 import os
 import sys
+from pathlib import Path
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from path_utils import get_private_data_dir
 
 # Configuration Constants
-FILE_PATH = "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/private_data/bigfollow.csv"
+FILE_PATH = str(get_private_data_dir() / "bigfollow.csv")
 OPENS_PER_BATCH = 30
 TARGET_COLUMN = "wallet_address"  # Column containing the wallet addresses
 BASE_URL = "https://gmgn.ai/sol/address/"  # Base URL for GMGN.ai

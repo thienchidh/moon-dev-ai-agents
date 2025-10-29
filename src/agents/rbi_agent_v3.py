@@ -242,7 +242,7 @@ RISK MANAGEMENT:
 
 If you need indicators use TA lib or pandas TA. 
 
-Use this data path: /Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi/BTC-USD-15m.csv
+Use this data path: src/data/rbi/BTC-USD-15m.csv (use Path(__file__).parent.parent / 'data' / 'rbi' / 'BTC-USD-15m.csv' for full path)
 the above data head looks like below
 datetime, open, high, low, close, volume,
 2023-01-01 00:00:00, 16531.83, 16532.69, 16509.11, 16510.82, 231.05338022,
